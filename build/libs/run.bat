@@ -1,0 +1,1 @@
+cmd /k java -jar waj-1.0-SNAPSHOT.jar
