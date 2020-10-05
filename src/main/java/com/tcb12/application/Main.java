@@ -2,12 +2,13 @@ package com.tcb12.application;
 
 import java.awt.*;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Main {
     public static final int MAX_Y = 400;
     public static final int MAX_X = 400;
-    public static final Integer One_Minute = 5000;
+    public static final Integer One_Minute = 6000;
     private static Robot theRobot;
     private static Boolean safeMode;
 
@@ -83,6 +84,8 @@ public class Main {
         switch (aRoll) {
             case 1:
                 hitStartButton();
+            case 2:
+                hitWindowsKey();
             default:
                 moveMouseRandomly();
         }
@@ -134,5 +137,24 @@ public class Main {
         // Exit start menu
         theRobot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         theRobot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
+
+    private static void hitWindowsKey() {
+        try {
+            Robot aRobot = new Robot();
+
+            // Windows key press
+            aRobot.keyPress(KeyEvent.VK_WINDOWS);
+            aRobot.keyRelease(KeyEvent.VK_WINDOWS);
+
+            // Wait one second
+            Thread.sleep(1000);
+
+            // Press key again to close start menu
+            aRobot.keyPress(KeyEvent.VK_WINDOWS);
+            aRobot.keyRelease(KeyEvent.VK_WINDOWS);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
