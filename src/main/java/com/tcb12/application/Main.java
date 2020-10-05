@@ -9,12 +9,16 @@ public class Main {
     public static final int MAX_X = 400;
     public static final Integer One_Minute = 5000;
     private static Robot theRobot;
+    private static Boolean safeMode;
 
     public static void main(String[] args) throws AWTException {
         System.out.println("Starting...");
 
+        // Create robot
         theRobot = new Robot();
-        Random aRandom = new Random();
+
+        // Enable safe mode temporarily
+        safeMode = true;
 
         // Declare variables
         int last_x = 0;
@@ -30,11 +34,17 @@ public class Main {
 
             // Check if the mouse has not moved
             if (x == last_x && y == last_y) {
-                System.out.println("Movement not detected, moving mouse");
+                System.out.println("Movement not detected");
 
-                // Move the mouse
-                theRobot.mouseMove(aRandom.nextInt(MAX_X), aRandom.nextInt(MAX_Y));
-                hitStartButton();
+                // Check safe mode
+                if (safeMode) {
+                    // Do safe action
+                    doRandomSafeAction();
+                }
+                else {
+                    // Do random action, may be unsafe
+                    doRandomAction();
+                }
             }
 
             // Set last mouse position
@@ -61,8 +71,28 @@ public class Main {
             case 2:
                 hitStartButton();
             default:
-                System.out.println("Bad roll, skipping...");
+                moveMouseRandomly();
         }
+    }
+
+    private static void doRandomSafeAction() {
+        // Do a random roll
+        Random aRandom = new Random();
+        int aRoll = aRandom.nextInt(5);
+
+        switch (aRoll) {
+            case 1:
+                hitStartButton();
+            default:
+                moveMouseRandomly();
+        }
+    }
+
+    private static void moveMouseRandomly() {
+        Random aRandom = new Random();
+
+        // Move the mouse
+        theRobot.mouseMove(aRandom.nextInt(MAX_X), aRandom.nextInt(MAX_Y));
     }
 
     private static void doRandomRightMouseClick() {
