@@ -50,6 +50,21 @@ public class Main {
         }
     }
 
+    private static void doRandomAction() {
+        // Do a random roll
+        Random aRandom = new Random();
+        int aRoll = aRandom.nextInt(2);
+
+        switch (aRoll) {
+            case 1:
+                doRandomRightMouseClick();
+            case 2:
+                hitStartButton();
+            default:
+                System.out.println("Bad roll, skipping...");
+        }
+    }
+
     private static void doRandomRightMouseClick() {
         // Right click
         theRobot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
