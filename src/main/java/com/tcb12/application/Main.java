@@ -3,12 +3,13 @@ package com.tcb12.application;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 import java.util.Random;
 
 public class Main {
     public static final int MAX_Y = 400;
     public static final int MAX_X = 400;
-    public static final Integer One_Minute = 6000;
+    public static final Integer One_Minute = 60000;
     private static Robot theRobot;
     private static Boolean safeMode;
 
@@ -154,6 +155,15 @@ public class Main {
             aRobot.keyPress(KeyEvent.VK_WINDOWS);
             aRobot.keyRelease(KeyEvent.VK_WINDOWS);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void openNotepad() {
+        Runtime rs = Runtime. getRuntime();
+        try {
+            rs. exec("notepad");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
