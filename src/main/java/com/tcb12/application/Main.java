@@ -18,6 +18,9 @@ public class Main {
             theAction = new NonSecureAction();
         }
 
+        // Set randomness to 10%
+        theAction.setRandomnessPercentage(10);
+
         // Declare variables
         int last_x = 0;
         int last_y = 0;

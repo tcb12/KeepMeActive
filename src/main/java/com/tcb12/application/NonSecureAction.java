@@ -17,14 +17,13 @@ public class NonSecureAction implements ActionInterface {
 
     @Override
     public void doRandomAction() {
-        // Do a random roll
-        Random aRandom = new Random();
-        int aRoll = aRandom.nextInt(2);
+        // Roll dice
+        int aDiceRoll = rollDice(2);
 
-        switch (aRoll) {
-            case 1:
+        switch (aDiceRoll) {
+            case 0:
                 doRandomRightMouseClick();
-            case 2:
+            case 1:
                 hitStartButton();
             default:
                 moveMouseRandomly();
@@ -34,6 +33,25 @@ public class NonSecureAction implements ActionInterface {
     @Override
     public void setRandomnessPercentage(int aPercent) {
         randomPercentage = aPercent;
+    }
+
+    private int rollDice(int maxDiceValue) {
+        // Create random
+        Random aRandom = new Random();
+
+        // Create return
+        int aReturn = 0;
+
+        // Generate random chance
+        int aRoll = aRandom.nextInt(100);
+
+        // Chance won
+        if (aRoll < randomPercentage) {
+            // Roll again, but a value that will land in the dice amount
+            aReturn = aRandom.nextInt(maxDiceValue);
+        }
+
+        return aReturn;
     }
 
     private void moveMouseRandomly() {
