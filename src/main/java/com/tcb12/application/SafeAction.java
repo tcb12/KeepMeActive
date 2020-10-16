@@ -16,12 +16,11 @@ public class SafeAction implements ActionInterface {
 
     @Override
     public void doRandomAction() {
-        // Do a random roll
-        Random aRandom = new Random();
-        int aRoll = aRandom.nextInt(5);
+        // Roll dice
+        int aDiceRoll = rollDice(1);
 
-        switch (aRoll) {
-            case 1:
+        switch (aDiceRoll) {
+            case 0:
                 hitWindowsKey();
             default:
                 moveMouseRandomly();
@@ -50,6 +49,26 @@ public class SafeAction implements ActionInterface {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private int rollDice(int maxDiceValue) {
+        // Create random
+        Random aRandom = new Random();
+
+        // Create return
+        int aReturn = 0;
+
+        // Generate random chance
+        int aRoll = aRandom.nextInt(100);
+
+        // Chance won
+        if (aRoll < randomPercentage) {
+            // Roll again, but a value that will land in the dice amount
+            aReturn = aRandom.nextInt(maxDiceValue);
+            System.out.println("Rolled: " + aReturn);
+        }
+
+        return aReturn;
     }
 
     private void openNotepad() {
