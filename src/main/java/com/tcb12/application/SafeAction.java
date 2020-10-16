@@ -2,7 +2,6 @@ package com.tcb12.application;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 import java.util.Random;
 
 public class SafeAction implements ActionInterface {
@@ -69,15 +68,6 @@ public class SafeAction implements ActionInterface {
         }
 
         return aReturn;
-    }
-
-    private void openNotepad() {
-        Runtime rs = Runtime. getRuntime();
-        try {
-            rs. exec("notepad");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void moveMouseRandomly() {
