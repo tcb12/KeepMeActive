@@ -3,7 +3,7 @@ package com.tcb12.application;
 import java.awt.*;
 
 public class Main {
-    public static final Integer One_Minute = 60000;
+    public static final Integer Half_Minute = 30000;
 
     public static void main(String[] args) throws AWTException {
         System.out.println("Starting...");
@@ -47,7 +47,7 @@ public class Main {
 
             // Wait one minute
             try {
-                Thread.sleep(One_Minute);
+                Thread.sleep(Half_Minute);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
